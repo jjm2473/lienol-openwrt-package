@@ -1,6 +1,6 @@
 #!/bin/sh /etc/rc.common
 
-START=99
+START=19
 
 TIMECONTROL_ENABLE=0
 
@@ -77,7 +77,6 @@ start(){
 	iptables_w -t filter -I FORWARD -j TIMECONTROL
 	iptables_w -t nat -I TIMECONTROL -i $interface -j TIMECONTROL_RULES
 	iptables_w -t nat -I PREROUTING -j TIMECONTROL
-	echo "/etc/init.d/timecontrol restart" > "/var/etc/timecontrol.include"
 }
 
 stop(){

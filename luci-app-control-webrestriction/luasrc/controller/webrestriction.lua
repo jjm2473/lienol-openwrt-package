@@ -13,7 +13,7 @@ end
 function status()
     local e = {}
     e.status = luci.sys.call(
-                   "iptables -L FORWARD |grep WEB_RESTRICTION >/dev/null") == 0
+                   "iptables -t filter -L forwarding_lan_rule | grep -c WEB_RESTRICTION >/dev/null") == 0
     luci.http.prepare_content("application/json")
     luci.http.write_json(e)
 end

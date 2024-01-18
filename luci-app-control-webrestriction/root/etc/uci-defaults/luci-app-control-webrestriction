@@ -1,6 +1,15 @@
 #!/bin/sh
 
 uci -q batch <<-EOF >/dev/null
+	delete firewall.webrestriction
+	set firewall.webrestriction=include
+	set firewall.webrestriction.type=script
+	set firewall.webrestriction.path=/var/etc/webrestriction.include
+	set firewall.webrestriction.reload=1
+	commit firewall
+EOF
+
+uci -q batch <<-EOF >/dev/null
 	delete ucitrack.@webrestriction[-1]
 	add ucitrack webrestriction
 	set ucitrack.@webrestriction[-1].init=webrestriction
