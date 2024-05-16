@@ -7,8 +7,8 @@ include $(TOPDIR)/rules.mk
 
 LUCI_TITLE:=LuCI support for Time Control
 LUCI_PKGARCH:=all
-PKG_VERSION:=1.1.1
-PKG_RELEASE:=20240118
+PKG_VERSION:=1.1.2
+PKG_RELEASE:=20240516
 
 include $(TOPDIR)/feeds/luci/luci.mk
 

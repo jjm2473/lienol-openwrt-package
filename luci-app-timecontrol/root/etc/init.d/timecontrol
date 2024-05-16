@@ -34,10 +34,12 @@ add_rule(){
 	[ "$z5" == "1" ] && Z5="Fri,"
 	[ "$z6" == "1" ] && Z6="Sat,"
 	[ "$z7" == "1" ] && Z7="Sun"
+	local weekdays="$Z1$Z2$Z3$Z4$Z5$Z6$Z7"
+	[ -z "$weekdays" ] || weekdays="--weekdays $weekdays"
 
 	local table
 	for table in filter nat; do
-		iptables_w -t $table -A TIMECONTROL_RULES -m mac --mac-source $macaddr -m time --kerneltz --timestart $timeon --timestop $timeoff --weekdays $Z1$Z2$Z3$Z4$Z5$Z6$Z7 -j TIMECONTROL_REJECT
+		iptables_w -t $table -A TIMECONTROL_RULES -m mac --mac-source $macaddr -m time --kerneltz --timestart $timeon --timestop $timeoff $weekdays -j TIMECONTROL_REJECT
 	done
 }
 
