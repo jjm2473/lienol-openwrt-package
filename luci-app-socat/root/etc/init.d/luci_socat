@@ -149,14 +149,14 @@ stop_service() {
 }
 
 start() {
-	local enable=$(uci -q get $CONFIG.@global[0].enable)
+	local enable=$(uci -q get socat_luci.@global[0].enable)
 	if [ "$enable" = "0" ];then
 		stop_service
 	else
 		[ -x /sbin/fw4 ] && NFTABLES=true
 		mkdir -p $CONFIG_PATH
 		add_rule
-		config_load $CONFIG
+		config_load socat_luci
 		config_foreach run_service "config"
 		gen_include
 	fi

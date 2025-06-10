@@ -16,7 +16,7 @@ LUCI_DEPENDS:=+socat
 LUCI_PKGARCH:=all
 
 define Package/$(PKG_NAME)/conffiles
-/etc/config/socat
+/etc/config/socat_luci
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
